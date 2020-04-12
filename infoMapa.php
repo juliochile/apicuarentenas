@@ -1,21 +1,26 @@
 <?php
 
 /**
- * Aporte a mapa de Jorge Retamal sobr covid 19 en Chile.
- *
- * Puede recibir el parámetro "pagina", que corresponde al mapa del Ministerio de Salud.
+ * Aporte a mapa de Jorge Retamal sobre covid 19 en Chile.
  *
  */
 
-$pagina = isset($_GET["pagina"]) ? $_GET["pagina"] :  "https://www.google.com/maps/d/u/0/embed?mid=1cdg89HnDuW_y4-aenjiJ-hBfO5rRGNF3&hl=es-419&ll=-33.443721884784594%2C-70.66818168388977&z=11";
-$cuerpo = file_get_contents($pagina);
-
+$cuerpo = file_get_contents("https://www.gob.cl/coronavirus/cuarentena/");
 preg_match(
-	'/var _pageData = "(.*?)";<\/script>/',
+	'/<iframe src="(https:\/\/www.google.com\/maps\/d\/embed.*?)"/',
 	$cuerpo,
 	$matches
 );
-$base = $matches[1];
+
+
+$cuerpo_iframe = file_get_contents($matches[1]);
+
+preg_match(
+	'/var _pageData = "(.*?)";<\/script>/',
+	$cuerpo_iframe,
+	$matches_iframe
+);
+$base = $matches_iframe[1];
 $base =  preg_replace('/\\\"/', '"', $base);
 $base =  preg_replace('/\\\n/', '', $base);
 $base =  preg_replace('/\\\\"/', "'", $base);
