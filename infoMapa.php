@@ -48,4 +48,6 @@ foreach ($comunas as $comuna) {
 	);
 }
 
+header('Content-Type: application/json');
 echo json_encode($salida);
+exit;
