@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Aporte a mapa de Jorge Retamal sobre covid 19 en Chile.
+ * Aporte a mapa de Jorge Retamal sobr covid 19 en Chile.
  *
  */
 
