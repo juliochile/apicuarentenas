@@ -42,7 +42,7 @@ foreach ($comunas as $comuna) {
 	array_push(
 		$salida, 
 		array(
-			"nombre" => $comuna[6][1][0],
+			"nombre" => $comuna[5][0][1][0],
 			"coordenadas" => $coordenadas,
 		)
 	);
